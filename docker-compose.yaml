@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  cache:
+    image: redis:3.0
+    container_name: cache
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    ports:
+      - 6379:6379
+    expose:
+      - 6379
+    volumes:
+      - ../_data/redis-dis:/data
+  
+  api:
+    image: fabioleitedev/hexis-challenge:latest
+    working_dir: /usr/src/app
+    links:
+      - cache
+    ports:
+      - 5000:5000
+    expose:
+      - 5000
+    environment:
+      - REDIS_HOST=cache
+      - REDIS_PORT=6379
+      - REDIS_PERSISTENCE_PERIOD_IN_DAYS=90
+
+
+
