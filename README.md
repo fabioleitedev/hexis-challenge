@@ -77,3 +77,11 @@ I left a `deployment.yaml` as an example to deploy it in K8S.
   ]
 }
 ```
+
+## About performance
+
+Due to it's assynchronous event-driven and non-blocking architecture, Node.js is definitely one of the best choices to build restfuls API's. Node.js can handle millions of requests assynchonously because each request is stored in a queue and then processed by the event loop assynchronously, giving an amazing performance to our application.
+
+Other choose to increase the performance of this application was using Redis to cache data. If the data is cached, the application doesn't need to make a new HTTP request and parse this HTML to get the links.
+
+Finally, using Docker and Kubernetes allow the application to be containerized and scaled up horizontally, given even more flexibility and power to handle tons of requests simultaneously.
